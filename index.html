@@ -1,0 +1,76 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeFloww Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <h1><i class='bx bxs-shield-alt-2'></i> CodeFloww Admin Panel</h1>
+    </nav>
+    <aside class="sidebar">
+        <ul>
+            <li><a href="#dashboard"><i class='bx bxs-dashboard'></i> Dashboard</a></li>
+            <li><a href="#players"><i class='bx bxs-user-detail'></i> All Players</a></li>
+            <li><a href="#online"><i class='bx bxs-user-voice'></i> Online Players</a></li>
+            <li><a href="#vehicles"><i class='bx bxs-car'></i> Vehicles</a></li>
+            <li><a href="#actions"><i class='bx bxs-cog'></i> Admin Actions</a></li>
+        </ul>
+    </aside>
+    <main>
+        <section id="dashboard" class="card">
+            <h2>Dashboard Overview</h2>
+            <div class="stats">
+                <div class="stat"><h3 id="totalPlayers">0</h3><p>Total Players</p></div>
+                <div class="stat"><h3 id="onlinePlayers">0</h3><p>Online Players</p></div>
+                <div class="stat"><h3 id="vehiclesCount">0</h3><p>Vehicles</p></div>
+            </div>
+        </section>
+
+        <section id="players" class="card">
+            <h2>All Players</h2>
+            <input type="text" id="searchPlayer" placeholder="Search players...">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Steam Name</th>
+                        <th>Money</th>
+                        <th>Bank</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="playersTable"></tbody>
+            </table>
+        </section>
+
+        <section id="online" class="card">
+            <h2>Online Players</h2>
+            <ul id="onlineList"></ul>
+        </section>
+
+        <section id="vehicles" class="card">
+            <h2>Vehicles</h2>
+            <ul id="vehiclesList"></ul>
+        </section>
+
+        <section id="actions" class="card">
+            <h2>Admin Actions</h2>
+            <form id="adminForm">
+                <input type="text" placeholder="Player ID" id="playerId" required>
+                <select id="actionType" required>
+                    <option value="kick">Kick</option>
+                    <option value="ban">Ban</option>
+                    <option value="note">Add Note</option>
+                </select>
+                <input type="text" placeholder="Reason" id="reason" required>
+                <button type="submit">Execute Action</button>
+            </form>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
