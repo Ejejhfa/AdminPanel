@@ -1,76 +1,79 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeFloww Admin Panel</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HypeX Admin Panel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #admin-panel {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 1000px;
+    }
+    .player-card {
+      background: #334155;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .buttons button {
+      margin-right: 8px;
+      margin-top: 5px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      display: none;
+    }
+    .popup h3 {
+      margin-bottom: 10px;
+    }
+    .popup button {
+      margin: 5px;
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar">
-        <h1><i class='bx bxs-shield-alt-2'></i> CodeFloww Admin Panel</h1>
-    </nav>
-    <aside class="sidebar">
-        <ul>
-            <li><a href="#dashboard"><i class='bx bxs-dashboard'></i> Dashboard</a></li>
-            <li><a href="#players"><i class='bx bxs-user-detail'></i> All Players</a></li>
-            <li><a href="#online"><i class='bx bxs-user-voice'></i> Online Players</a></li>
-            <li><a href="#vehicles"><i class='bx bxs-car'></i> Vehicles</a></li>
-            <li><a href="#actions"><i class='bx bxs-cog'></i> Admin Actions</a></li>
-        </ul>
-    </aside>
-    <main>
-        <section id="dashboard" class="card">
-            <h2>Dashboard Overview</h2>
-            <div class="stats">
-                <div class="stat"><h3 id="totalPlayers">0</h3><p>Total Players</p></div>
-                <div class="stat"><h3 id="onlinePlayers">0</h3><p>Online Players</p></div>
-                <div class="stat"><h3 id="vehiclesCount">0</h3><p>Vehicles</p></div>
-            </div>
-        </section>
+  <div id="admin-panel">
+    <h2>HypeX Admin Panel</h2>
 
-        <section id="players" class="card">
-            <h2>All Players</h2>
-            <input type="text" id="searchPlayer" placeholder="Search players...">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Steam Name</th>
-                        <th>Money</th>
-                        <th>Bank</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="playersTable"></tbody>
-            </table>
-        </section>
+    <div class="player-card">
+      <h4>JohnDoe (ID: 12)</h4>
+      <p>Wapens: Pistol, Knife</p>
+      <div class="buttons">
+        <button onclick="kickPlayer('JohnDoe')">Kick</button>
+        <button onclick="revivePlayer('JohnDoe')">Revive</button>
+        <button onclick="spectatePlayer('JohnDoe')">Spectate</button>
+        <button onclick="showBanPopup('JohnDoe')">Ban</button>
+      </div>
+    </div>
 
-        <section id="online" class="card">
-            <h2>Online Players</h2>
-            <ul id="onlineList"></ul>
-        </section>
-
-        <section id="vehicles" class="card">
-            <h2>Vehicles</h2>
-            <ul id="vehiclesList"></ul>
-        </section>
-
-        <section id="actions" class="card">
-            <h2>Admin Actions</h2>
-            <form id="adminForm">
-                <input type="text" placeholder="Player ID" id="playerId" required>
-                <select id="actionType" required>
-                    <option value="kick">Kick</option>
-                    <option value="ban">Ban</option>
-                    <option value="note">Add Note</option>
-                </select>
-                <input type="text" placeholder="Reason" id="reason" required>
-                <button type="submit">Execute Action</button>
-            </form>
-        </section>
-    </main>
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- Ban popup -->
+    <div id="ban-popup" class="popup">
+      <h3>Selecteer ban duur voor <span id="ban-player-name"></span>:</h3>
+      <button onclick="banPlayer('1h')">1 uur</button>
+      <button onclick="banPlayer('24h')">
