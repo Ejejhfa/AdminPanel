@@ -1,92 +1,75 @@
-<!-- styles.css -->
+// style.css
 body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #f4f4f4;
-    display: flex;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-.navbar {
-    background: #111;
-    color: white;
-    padding: 1rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+#admin-panel {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 1000px;
 }
-.sidebar {
-    width: 220px;
-    background: #1f1f1f;
-    color: white;
-    height: 100vh;
-    padding-top: 80px;
-    position: fixed;
-    top: 0;
-    left: 0;
+.player-card {
+  background: #334155;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
 }
-.sidebar ul {
-    list-style: none;
-    padding: 0;
+.buttons button {
+  margin-right: 8px;
+  margin-top: 5px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
 }
-.sidebar ul li {
-    padding: 1rem;
-    border-bottom: 1px solid #333;
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  display: none;
 }
-.sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.popup h3 {
+  margin-bottom: 10px;
 }
-main {
-    margin-left: 240px;
-    padding: 2rem;
-    padding-top: 6rem;
-    width: calc(100% - 240px);
+.popup button {
+  margin: 5px;
 }
-.card {
-    background: white;
-    border-radius: 10px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+// script.js
+let currentBanPlayer = '';
+function kickPlayer(name) {
+  alert(`Kicked ${name}`);
 }
-.stats {
-    display: flex;
-    gap: 2rem;
+function revivePlayer(name) {
+  alert(`Revived ${name}`);
 }
-.stat {
-    background: #eee;
-    border-radius: 10px;
-    padding: 1rem;
-    text-align: center;
-    flex: 1;
+function spectatePlayer(name) {
+  alert(`Spectating ${name}`);
 }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
+function showBanPopup(name) {
+  currentBanPlayer = name;
+  document.getElementById('ban-player-name').textContent = name;
+  document.getElementById('ban-popup').style.display = 'block';
 }
-table, th, td {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-    text-align: center;
+function closeBanPopup() {
+  document.getElementById('ban-popup').style.display = 'none';
 }
-input[type="text"], select, button {
-    padding: 0.5rem;
-    margin-right: 1rem;
-    margin-top: 1rem;
-}
-button {
-    background: #111;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-button:hover {
-    background: #333;
+function banPlayer(duration) {
+  alert(`Banned ${currentBanPlayer} for ${duration}`);
+  closeBanPopup();
 }
